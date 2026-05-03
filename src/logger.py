@@ -1,28 +1,23 @@
 import logging
 import os
 from datetime import datetime
-from src.logger import logging
 
-# Define the log file name with a timestamp
+# 1. Create just the filename
 LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
 
-# Create a path for the logs folder
-logs_path = os.path.join(os.getcwd(), "logs", LOG_FILE)
+# 2. Define the 'logs' folder path in your current directory
+logs_path = os.path.join(os.getcwd(), "logs")
 
-# Create the directory even if it already exists
-os.makedirs(os.path.dirname(logs_path), exist_ok=True)
+# 3. Create the 'logs' folder if it doesn't exist
+# We don't use the filename here, just the folder path!
+os.makedirs(logs_path, exist_ok=True)
 
-LOG_FILE = os.path.join(logs_path, LOG_FILE)
+# 4. Join the folder and the filename to get the full file path
+LOG_FILE_PATH = os.path.join(logs_path, LOG_FILE)
 
-# Configure the logging behavior
+# 5. Setup the logging configuration
 logging.basicConfig(
-    filename=LOG_FILE,
+    filename=LOG_FILE_PATH,
     format="[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)s",
     level=logging.INFO,
 )
-
-
-import sys
-from src.logger import logging
-from src.exceptions import CustomException
-
