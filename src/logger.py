@@ -1,6 +1,7 @@
 import logging
 import os
 from datetime import datetime
+from src.logger import logging
 
 # Define the log file name with a timestamp
 LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
